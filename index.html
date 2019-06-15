@@ -60,11 +60,20 @@
             var lottoHTML = '';
             for (var i = 0; i < 5; i++) {
                 var numbers = getLuckyNumber();
+                while (checkLogic(numbers)) numbers = getLuckyNumber();
                 lottoHTML += '<div class="numset"><span class="number">';
                 lottoHTML += numbers.join('</span> <span class="number">');
                 lottoHTML += '</span></div>';
             }
             LOTTO.innerHTML = lottoHTML;
+        }
+
+        function checkLogic(numbers) {
+            for (var i = 0; i < numbers.length; i++) {
+                var no = numbers[i];
+                if (numbers.indexOf(no + 1) >= 0 && numbers.indexOf(no + 2) >= 0) return true;
+            }
+            return false;
         }
     </script>
 </body>
